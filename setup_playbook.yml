@@ -14,112 +14,111 @@
         state: started
         enabled: true
 
-    - name: Create informative index.html
+    - name: Create beautiful index.html for Web Server
       copy:
         dest: /var/www/html/index.html
         content: |
           <html>
-  <head>
-    <title>Web Server - {{ inventory_hostname }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-      body {
-        font-family: 'Segoe UI', Arial, sans-serif;
-        background: linear-gradient(135deg, #c3ec52 0%, #0ba29d 100%);
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
-      }
-      .container {
-        background: rgba(255,255,255,0.97);
-        border-radius: 16px;
-        box-shadow: 0 8px 40px #0ba29d40;
-        max-width: 600px;
-        padding: 32px 28px 24px 28px;
-        margin: 56px auto;
-        animation: fadeIn 1.1s;
-      }
-      @keyframes fadeIn {
-        0%   { opacity: 0; transform: translateY(32px);}
-        100% { opacity: 1; transform: none;}
-      }
-      h1 {
-        background: linear-gradient(90deg, #0ba29d 40%, #42e695 100%);
-        color: white;
-        padding: 16px;
-        border-radius: 10px 10px 0 0;
-        margin: -32px -28px 24px -28px;
-        font-size: 2.5rem;
-        box-shadow: 0 2px 8px #42e69529;
-        text-align: center;
-        letter-spacing: 1.5px;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 24px;
-        font-size: 1.1rem;
-      }
-      th, td {
-        padding: 8px 10px;
-        text-align: left;
-      }
-      th {
-        background: #0ba29d;
-        color: white;
-        width: 34%;
-      }
-      tr:nth-child(odd) td {
-        background: #f4fcf8;
-      }
-      tr:nth-child(even) td {
-        background: #e0f8f6;
-      }
-      .status {
-        margin: 22px 0 14px 0;
-        padding: 12px 16px;
-        background: #dff6eb;
-        color: #108370;
-        font-weight: 500;
-        border-left: 4px solid #11c893;
-        border-radius: 4px;
-        box-shadow: 0 1px 4px #0ba29d09;
-      }
-      .ami-logo {
-        margin: 16px auto 0 auto;
-        display: block;
-        width: 130px;
-        opacity: 0.8;
-      }
-      .footer {
-        color: #6ba890;
-        font-size: 0.99rem;
-        text-align: right;
-        margin-top: 16px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Web Server Node</h1>
-      <div class="status">✅ Apache is installed & managed by <strong>Ansible</strong>!</div>
-      <table>
-        <tr><th>Role</th><td>Web Server</td></tr>
-        <tr><th>Hostname</th><td>{{ inventory_hostname }}</td></tr>
-        <tr><th>Private IP</th><td>{{ ansible_host }}</td></tr>
-        <tr><th>Current Time</th><td>{{ lookup('pipe', 'date --iso-8601=seconds') }}</td></tr>
-        <tr><th>Deployed By</th><td>Ansible Automation</td></tr>
-        <tr><th>Linux User</th><td>{{ ansible_user | default('ec2-user/centos/ubuntu') }}</td></tr>
-      </table>
-      <img class="ami-logo" src="https://www.ansible.com/hubfs/2016_Images/Brand%20Assets/Ansible-Mark-Large-RGB-Black.png" 
-           alt="Ansible Logo" />
-      <div class="footer">
-        &copy; {{ lookup('pipe', 'date +%Y') }} Automated Deployment – Demo system powered by Ansible, Apache, and Linux.
-      </div>
-    </div>
-  </body>
-</html>
-
+            <head>
+              <title>Web Server - {{ inventory_hostname }}</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <style>
+                body {
+                  font-family: 'Segoe UI', Arial, sans-serif;
+                  background: linear-gradient(135deg, #c3ec52 0%, #0ba29d 100%);
+                  margin: 0;
+                  padding: 0;
+                  min-height: 100vh;
+                }
+                .container {
+                  background: rgba(255,255,255,0.97);
+                  border-radius: 16px;
+                  box-shadow: 0 8px 40px #0ba29d40;
+                  max-width: 600px;
+                  padding: 32px 28px 24px 28px;
+                  margin: 56px auto;
+                  animation: fadeIn 1.1s;
+                }
+                @keyframes fadeIn {
+                  0%   { opacity: 0; transform: translateY(32px);}
+                  100% { opacity: 1; transform: none;}
+                }
+                h1 {
+                  background: linear-gradient(90deg, #0ba29d 40%, #42e695 100%);
+                  color: white;
+                  padding: 16px;
+                  border-radius: 10px 10px 0 0;
+                  margin: -32px -28px 24px -28px;
+                  font-size: 2.5rem;
+                  box-shadow: 0 2px 8px #42e69529;
+                  text-align: center;
+                  letter-spacing: 1.5px;
+                }
+                table {
+                  width: 100%;
+                  border-collapse: collapse;
+                  margin-bottom: 24px;
+                  font-size: 1.1rem;
+                }
+                th, td {
+                  padding: 8px 10px;
+                  text-align: left;
+                }
+                th {
+                  background: #0ba29d;
+                  color: white;
+                  width: 34%;
+                }
+                tr:nth-child(odd) td {
+                  background: #f4fcf8;
+                }
+                tr:nth-child(even) td {
+                  background: #e0f8f6;
+                }
+                .status {
+                  margin: 22px 0 14px 0;
+                  padding: 12px 16px;
+                  background: #dff6eb;
+                  color: #108370;
+                  font-weight: 500;
+                  border-left: 4px solid #11c893;
+                  border-radius: 4px;
+                  box-shadow: 0 1px 4px #0ba29d09;
+                }
+                .ami-logo {
+                  margin: 16px auto 0 auto;
+                  display: block;
+                  width: 130px;
+                  opacity: 0.8;
+                }
+                .footer {
+                  color: #6ba890;
+                  font-size: 0.99rem;
+                  text-align: right;
+                  margin-top: 16px;
+                }
+              </style>
+            </head>
+            <body>
+              <div class="container">
+                <h1>Web Server Node</h1>
+                <div class="status">✅ Apache is installed & managed by <strong>Ansible</strong>!</div>
+                <table>
+                  <tr><th>Role</th><td>Web Server</td></tr>
+                  <tr><th>Hostname</th><td>{{ inventory_hostname }}</td></tr>
+                  <tr><th>Private IP</th><td>{{ ansible_host }}</td></tr>
+                  <tr><th>Current Time</th><td>{{ lookup('pipe', 'date --iso-8601=seconds') }}</td></tr>
+                  <tr><th>Deployed By</th><td>Ansible Automation</td></tr>
+                  <tr><th>Linux User</th><td>{{ ansible_user | default('ec2-user/centos/ubuntu') }}</td></tr>
+                </table>
+                <img class="ami-logo" src="https://www.ansible.com/hubfs/2016_Images/Brand%20Assets/Ansible-Mark-Large-RGB-Black.png"
+                     alt="Ansible Logo" />
+                <div class="footer">
+                  &copy; {{ lookup('pipe', 'date +%Y') }} Automated Deployment – Demo system powered by Ansible, Apache, and Linux.
+                </div>
+              </div>
+            </body>
+          </html>
         mode: '0644'
 
 - name: Install PostgreSQL and Apache with custom web page on dbservers
@@ -158,107 +157,103 @@
         dest: /var/www/html/index.html
         content: |
           <html>
-  <head>
-    <title>DB Server - {{ inventory_hostname }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-      body {
-        font-family: 'Segoe UI', Arial, sans-serif;
-        background: linear-gradient(135deg, #f8ffae 0%, #43cea2 100%);
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
-      }
-      .container {
-        background: rgba(255,255,255,0.98);
-        border-radius: 18px;
-        box-shadow: 0 8px 40px #43cea240;
-        max-width: 620px;
-        padding: 36px 30px 26px 30px;
-        margin: 54px auto;
-        animation: fadeIn 1.3s;
-      }
-      @keyframes fadeIn {
-        0%   { opacity: 0; transform: translateY(36px);}
-        100% { opacity: 1; transform: none;}
-      }
-      h1 {
-        background: linear-gradient(90deg, #43cea2 30%, #185a9d 100%);
-        color: white;
-        padding: 18px;
-        border-radius: 12px 12px 0 0;
-        margin: -36px -30px 26px -30px;
-        font-size: 2.4rem;
-        box-shadow: 0 2px 8px #43cea229;
-        text-align: center;
-        letter-spacing: 1.4px;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 22px;
-        font-size: 1.05rem;
-      }
-      th, td {
-        padding: 8px 11px;
-        text-align: left;
-      }
-      th {
-        background: #185a9d;
-        color: white;
-        width: 34%;
-      }
-      tr:nth-child(odd) td {
-        background: #f7fff7;
-      }
-      tr:nth-child(even) td {
-        background: #eafcf7;
-      }
-      .status {
-        margin: 20px 0 10px 0;
-        padding: 11px 16px;
-        background: #e6fff2;
-        color: #317d54;
-        font-weight: 500;
-        border-left: 4px solid #43cea2;
-        border-radius: 5px;
-        box-shadow: 0 1px 4px #43cea211;
-      }
-      .db-logo {
-        margin: 13px auto 0 auto;
-        display: block;
-        width: 110px;
-        opacity: 0.93;
-      }
-      .footer {
-        color: #63ad98;
-        font-size: 0.98rem;
-        text-align: right;
-        margin-top: 19px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Database Server Node</h1>
-      <div class="status">🟢 PostgreSQL &amp; Apache are installed & managed by <strong>Ansible</strong>.</div>
-      <table>
-        <tr><th>Role</th><td>Database Server (PostgreSQL)</td></tr>
-        <tr><th>Hostname</th><td>{{ inventory_hostname }}</td></tr>
-        <tr><th>Private IP</th><td>{{ ansible_host }}</td></tr>
-        <tr><th>Current Time</th><td>{{ lookup('pipe', 'date --iso-8601=seconds') }}</td></tr>
-        <tr><th>Deployed By</th><td>Ansible Automation</td></tr>
-        <tr><th>Linux User</th><td>{{ ansible_user | default('ec2-user/centos/ubuntu') }}</td></tr>
-      </table>
-      <img class="db-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg"
-           alt="PostgreSQL Logo" />
-      <div class="footer">
-        &copy; {{ lookup('pipe', 'date +%Y') }} Automated Deployment &mdash; Powered by PostgreSQL, Apache, and Ansible.
-      </div>
-    </div>
-  </body>
-</html>
-
+            <head>
+              <title>DB Server - {{ inventory_hostname }}</title>
+              <style>
+                body {
+                  font-family: 'Segoe UI', Arial, sans-serif;
+                  background: linear-gradient(135deg, #f8ffae 0%, #43cea2 100%);
+                  margin: 0;
+                  padding: 0;
+                  min-height: 100vh;
+                }
+                .container {
+                  background: rgba(255,255,255,0.98);
+                  border-radius: 18px;
+                  box-shadow: 0 8px 40px #43cea240;
+                  max-width: 620px;
+                  padding: 36px 30px 26px 30px;
+                  margin: 54px auto;
+                  animation: fadeIn 1.3s;
+                }
+                @keyframes fadeIn {
+                  0%   { opacity: 0; transform: translateY(36px);}
+                  100% { opacity: 1; transform: none;}
+                }
+                h1 {
+                  background: linear-gradient(90deg, #43cea2 30%, #185a9d 100%);
+                  color: white;
+                  padding: 18px;
+                  border-radius: 12px 12px 0 0;
+                  margin: -36px -30px 26px -30px;
+                  font-size: 2.4rem;
+                  box-shadow: 0 2px 8px #43cea229;
+                  text-align: center;
+                  letter-spacing: 1.4px;
+                }
+                table {
+                  width: 100%;
+                  border-collapse: collapse;
+                  margin-bottom: 22px;
+                  font-size: 1.05rem;
+                }
+                th, td {
+                  padding: 8px 11px;
+                  text-align: left;
+                }
+                th {
+                  background: #185a9d;
+                  color: white;
+                  width: 34%;
+                }
+                tr:nth-child(odd) td {
+                  background: #f7fff7;
+                }
+                tr:nth-child(even) td {
+                  background: #eafcf7;
+                }
+                .status {
+                  margin: 20px 0 10px 0;
+                  padding: 11px 16px;
+                  background: #e6fff2;
+                  color: #317d54;
+                  font-weight: 500;
+                  border-left: 4px solid #43cea2;
+                  border-radius: 5px;
+                  box-shadow: 0 1px 4px #43cea211;
+                }
+                .db-logo {
+                  margin: 13px auto 0 auto;
+                  display: block;
+                  width: 110px;
+                  opacity: 0.93;
+                }
+                .footer {
+                  color: #63ad98;
+                  font-size: 0.98rem;
+                  text-align: right;
+                  margin-top: 19px;
+                }
+              </style>
+            </head>
+            <body>
+              <div class="container">
+                <h1>Database Server Node</h1>
+                <div class="status">🟢 PostgreSQL &amp; Apache are installed & managed by <strong>Ansible</strong>.</div>
+                <table>
+                  <tr><th>Role</th><td>Database Server (PostgreSQL)</td></tr>
+                  <tr><th>Hostname</th><td>{{ inventory_hostname }}</td></tr>
+                  <tr><th>Private IP</th><td>{{ ansible_host }}</td></tr>
+                  <tr><th>Current Time</th><td>{{ lookup('pipe', 'date --iso-8601=seconds') }}</td></tr>
+                  <tr><th>Deployed By</th><td>Ansible Automation</td></tr>
+                  <tr><th>Linux User</th><td>{{ ansible_user | default('ec2-user/centos/ubuntu') }}</td></tr>
+                </table>
+                <img class="db-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg"
+                     alt="PostgreSQL Logo" />
+                <div class="footer">
+                  &copy; {{ lookup('pipe', 'date +%Y') }} Automated Deployment &mdash; Powered by PostgreSQL, Apache, and Ansible.
+                </div>
+              </div>
+            </body>
+          </html>
         mode: '0644'
-
-
