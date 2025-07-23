@@ -1,0 +1,105 @@
+---
+- name: Install Apache and custom web page on webservers
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+    - name: Start and enable Apache
+      service:
+        name: apache2
+        state: started
+        enabled: true
+
+    - name: Create informative index.html
+      copy:
+        dest: /var/www/html/index.html
+        content: |
+          <html>
+          <head>
+            <title>Web Server - {{ inventory_hostname }}</title>
+            <style>
+              body { font-family: Arial, sans-serif; background: #eef; }
+              .box { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px #aac; max-width: 550px; margin: 40px auto;}
+              h1 { color: #0b369c; }
+              table { border-collapse: collapse; width: 100%; margin-top: 16px;}
+              th, td { padding: 6px 8px; border: 1px solid #ccc; }
+              th { background-color: #e0e7fa; }
+            </style>
+          </head>
+          <body>
+            <div class="box">
+              <h1>This is {{ inventory_hostname }}</h1>
+              <table>
+                <tr><th>Role</th><td>Web Server</td></tr>
+                <tr><th>Hostname</th><td>{{ inventory_hostname }}</td></tr>
+                <tr><th>Private IP</th><td>{{ ansible_host }}</td></tr>
+                <tr><th>Current Time</th><td>{{ lookup('pipe','date --iso-8601=seconds') }}</td></tr>
+              </table>
+              <p>This page is delivered by Apache, installed and configured with Ansible.</p>
+            </div>
+          </body>
+          </html>
+        mode: '0644'
+
+- name: Install MySQL and Apache with custom web page on dbservers
+  hosts: dbservers
+  become: true
+  tasks:
+    - name: Install MySQL server
+      apt:
+        name: mysql-server
+        state: present
+        update_cache: yes
+
+    - name: Start and enable MySQL
+      service:
+        name: mysql
+        state: started
+        enabled: true
+
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+
+    - name: Start and enable Apache
+      service:
+        name: apache2
+        state: started
+        enabled: true
+
+    - name: Create informative index.html for DB server
+      copy:
+        dest: /var/www/html/index.html
+        content: |
+          <html>
+          <head>
+            <title>DB Server - {{ inventory_hostname }}</title>
+            <style>
+              body { font-family: Arial, sans-serif; background: #f0eee9; }
+              .box { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px #ccc; max-width: 550px; margin: 40px auto;}
+              h1 { color: #178144; }
+              table { border-collapse: collapse; width: 100%; margin-top: 16px;}
+              th, td { padding: 6px 8px; border: 1px solid #ccc; }
+              th { background-color: #e0f6e7; }
+            </style>
+          </head>
+          <body>
+            <div class="box">
+              <h1>This is {{ inventory_hostname }}</h1>
+              <table>
+                <tr><th>Role</th><td>Database Server</td></tr>
+                <tr><th>Hostname</th><td>{{ inventory_hostname }}</td></tr>
+                <tr><th>Private IP</th><td>{{ ansible_host }}</td></tr>
+                <tr><th>Current Time</th><td>{{ lookup('pipe','date --iso-8601=seconds') }}</td></tr>
+              </table>
+              <p>MySQL and Apache are installed and managed by Ansible.</p>
+            </div>
+          </body>
+          </html>
+        mode: '0644'
