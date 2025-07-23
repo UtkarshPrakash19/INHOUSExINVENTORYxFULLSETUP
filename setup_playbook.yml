@@ -4,14 +4,13 @@
   become: true
   tasks:
     - name: Install Apache
-      apt:
-        name: apache2
+      yum:
+        name: httpd
         state: present
-        update_cache: yes
 
     - name: Start and enable Apache
       service:
-        name: apache2
+        name: httpd
         state: started
         enabled: true
 
@@ -46,30 +45,29 @@
           </html>
         mode: '0644'
 
-- name: Install MySQL and Apache with custom web page on dbservers
+- name: Install MariaDB and Apache with custom web page on dbservers
   hosts: dbservers
   become: true
   tasks:
-    - name: Install MySQL server
-      apt:
-        name: mysql-server
+    - name: Install MariaDB server
+      yum:
+        name: mariadb-server
         state: present
-        update_cache: yes
 
-    - name: Start and enable MySQL
+    - name: Start and enable MariaDB
       service:
-        name: mysql
+        name: mariadb
         state: started
         enabled: true
 
     - name: Install Apache
-      apt:
-        name: apache2
+      yum:
+        name: httpd
         state: present
 
     - name: Start and enable Apache
       service:
-        name: apache2
+        name: httpd
         state: started
         enabled: true
 
@@ -98,7 +96,7 @@
                 <tr><th>Private IP</th><td>{{ ansible_host }}</td></tr>
                 <tr><th>Current Time</th><td>{{ lookup('pipe','date --iso-8601=seconds') }}</td></tr>
               </table>
-              <p>MySQL and Apache are installed and managed by Ansible.</p>
+              <p>MariaDB and Apache are installed and managed by Ansible.</p>
             </div>
           </body>
           </html>
